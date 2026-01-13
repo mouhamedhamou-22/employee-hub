@@ -12,15 +12,17 @@ export function QuickActions() {
   const navigate = useNavigate();
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {actions.map((action) => (
         <button
           key={action.label}
           onClick={() => navigate(action.path)}
           className="quick-action-btn group"
         >
-          <action.icon className={`h-6 w-6 ${action.color} transition-transform group-hover:scale-110`} />
-          <span className="text-sm font-medium text-foreground">{action.label}</span>
+          <div className={`h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-muted flex items-center justify-center ${action.color}`}>
+            <action.icon className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+          </div>
+          <span className="text-xs sm:text-sm font-medium text-foreground">{action.label}</span>
         </button>
       ))}
     </div>

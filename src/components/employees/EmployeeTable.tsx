@@ -21,6 +21,8 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { EmployeeCard } from './EmployeeCard';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface EmployeeTableProps {
   employees: Employee[];
@@ -30,6 +32,7 @@ interface EmployeeTableProps {
 export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
   const navigate = useNavigate();
   const [deactivateId, setDeactivateId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const handleDeactivate = () => {
     if (deactivateId && onDeactivate) {
@@ -51,18 +54,53 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
     return labels[type] || type;
   };
 
+  // Mobile: Card layout
+  if (isMobile) {
+    return (
+      <>
+        <div className="grid gap-4">
+          {employees.map((employee) => (
+            <EmployeeCard 
+              key={employee.id} 
+              employee={employee} 
+              onDeactivate={(id) => setDeactivateId(id)} 
+            />
+          ))}
+        </div>
+
+        <AlertDialog open={!!deactivateId} onOpenChange={() => setDeactivateId(null)}>
+          <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-xl">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Deactivate Employee</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to deactivate this employee?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter className="flex-col gap-2 sm:flex-row">
+              <AlertDialogCancel className="mt-0">Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDeactivate} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                Deactivate
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </>
+    );
+  }
+
+  // Desktop/Tablet: Table layout
   return (
     <>
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-xl border border-border bg-card overflow-hidden overflow-x-auto">
         <table className="data-table">
           <thead>
             <tr>
               <th>Employee</th>
-              <th>Job Title</th>
+              <th className="hidden lg:table-cell">Job Title</th>
               <th>Role</th>
-              <th>Phone</th>
+              <th className="hidden md:table-cell">Phone</th>
               <th>Status</th>
-              <th>Salary Type</th>
+              <th className="hidden lg:table-cell">Salary Type</th>
               <th className="text-right">Actions</th>
             </tr>
           </thead>
@@ -78,17 +116,17 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
                     </Avatar>
                     <div>
                       <p className="font-medium text-foreground">{employee.fullName}</p>
-                      <p className="text-sm text-muted-foreground">{employee.email}</p>
+                      <p className="text-sm text-muted-foreground lg:hidden">{employee.jobTitle}</p>
                     </div>
                   </div>
                 </td>
-                <td>{employee.jobTitle}</td>
+                <td className="hidden lg:table-cell">{employee.jobTitle}</td>
                 <td className="capitalize">{employee.role}</td>
-                <td>{employee.phone}</td>
+                <td className="hidden md:table-cell">{employee.phone}</td>
                 <td>
                   <StatusBadge status={employee.status} />
                 </td>
-                <td>{formatSalaryType(employee.salaryType)}</td>
+                <td className="hidden lg:table-cell">{formatSalaryType(employee.salaryType)}</td>
                 <td>
                   <div className="flex items-center justify-end gap-1">
                     <Button

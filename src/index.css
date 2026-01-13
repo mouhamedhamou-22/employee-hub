@@ -145,11 +145,11 @@
   }
 
   .kpi-card {
-    @apply bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+    @apply bg-card border border-border rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
-  .data-table {
-    @apply w-full border-collapse;
+  .kpi-card .text-3xl {
+    @apply text-2xl md:text-3xl;
   }
 
   .data-table th {
