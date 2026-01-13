@@ -38,22 +38,22 @@ const Employees = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Page Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="page-title">Employees</h1>
-          <p className="page-description">Manage your team members and their information.</p>
+          <h1 className="page-title text-xl md:text-2xl">Employees</h1>
+          <p className="page-description text-sm md:text-base">Manage your team members and their information.</p>
         </div>
-        <Button onClick={() => setShowAddModal(true)}>
+        <Button onClick={() => setShowAddModal(true)} size="sm" className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Employee
         </Button>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
+      <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-3 md:p-4">
+        <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by name or phone..."
@@ -62,9 +62,9 @@ const Employees = () => {
             className="pl-10"
           />
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2">
           <Select value={roleFilter} onValueChange={setRoleFilter}>
-            <SelectTrigger className="w-36">
+            <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <Filter className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Role" />
             </SelectTrigger>
@@ -76,7 +76,7 @@ const Employees = () => {
             </SelectContent>
           </Select>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-36">
+            <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>

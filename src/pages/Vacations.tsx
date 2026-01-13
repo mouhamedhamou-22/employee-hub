@@ -11,11 +11,13 @@ import {
 } from '@/components/ui/select';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { vacations } from '@/data/mockData';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Vacations = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const isMobile = useIsMobile();
 
   const filteredVacations = useMemo(() => {
     return vacations.filter((vacation) => {
@@ -34,70 +36,70 @@ const Vacations = () => {
   }), []);
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Page Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="page-title">Vacations</h1>
-          <p className="page-description">Manage employee vacation requests and time off.</p>
+          <h1 className="page-title text-xl md:text-2xl">Vacations</h1>
+          <p className="page-description text-sm md:text-base">Manage employee vacation requests and time off.</p>
         </div>
-        <Button>
+        <Button size="sm" className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Vacation
         </Button>
       </div>
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-warning/10 flex items-center justify-center">
-              <Calendar className="h-6 w-6 text-warning" />
+      <div className="grid gap-3 grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-xl border border-border bg-card p-4 md:p-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-warning/10 flex items-center justify-center shrink-0">
+              <Calendar className="h-5 w-5 md:h-6 md:w-6 text-warning" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Pending</p>
-              <p className="text-2xl font-bold">{stats.pending}</p>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-success/10 flex items-center justify-center">
-              <Palmtree className="h-6 w-6 text-success" />
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Approved</p>
-              <p className="text-2xl font-bold">{stats.approved}</p>
+            <div className="min-w-0">
+              <p className="text-xs md:text-sm text-muted-foreground">Pending</p>
+              <p className="text-lg md:text-2xl font-bold">{stats.pending}</p>
             </div>
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-destructive/10 flex items-center justify-center">
-              <Calendar className="h-6 w-6 text-destructive" />
+        <div className="rounded-xl border border-border bg-card p-4 md:p-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-success/10 flex items-center justify-center shrink-0">
+              <Palmtree className="h-5 w-5 md:h-6 md:w-6 text-success" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Rejected</p>
-              <p className="text-2xl font-bold">{stats.rejected}</p>
+            <div className="min-w-0">
+              <p className="text-xs md:text-sm text-muted-foreground">Approved</p>
+              <p className="text-lg md:text-2xl font-bold">{stats.approved}</p>
             </div>
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-info/10 flex items-center justify-center">
-              <Calendar className="h-6 w-6 text-info" />
+        <div className="rounded-xl border border-border bg-card p-4 md:p-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-destructive/10 flex items-center justify-center shrink-0">
+              <Calendar className="h-5 w-5 md:h-6 md:w-6 text-destructive" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Total Days Used</p>
-              <p className="text-2xl font-bold">{stats.totalDays}</p>
+            <div className="min-w-0">
+              <p className="text-xs md:text-sm text-muted-foreground">Rejected</p>
+              <p className="text-lg md:text-2xl font-bold">{stats.rejected}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-4 md:p-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-info/10 flex items-center justify-center shrink-0">
+              <Calendar className="h-5 w-5 md:h-6 md:w-6 text-info" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs md:text-sm text-muted-foreground">Total Days</p>
+              <p className="text-lg md:text-2xl font-bold">{stats.totalDays}</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
+      <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-3 md:p-4">
+        <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by employee name..."
@@ -106,9 +108,9 @@ const Vacations = () => {
             className="pl-10"
           />
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2">
           <Select value={typeFilter} onValueChange={setTypeFilter}>
-            <SelectTrigger className="w-36">
+            <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <Filter className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Type" />
             </SelectTrigger>
@@ -121,7 +123,7 @@ const Vacations = () => {
             </SelectContent>
           </Select>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-36">
+            <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -134,37 +136,69 @@ const Vacations = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>Employee</th>
-              <th>Type</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Days</th>
-              <th>Reason</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredVacations.map((vacation) => (
-              <tr key={vacation.id}>
-                <td className="font-medium">{vacation.employeeName}</td>
-                <td className="capitalize">{vacation.type}</td>
-                <td>{vacation.startDate}</td>
-                <td>{vacation.endDate}</td>
-                <td>{vacation.days}</td>
-                <td className="text-muted-foreground max-w-xs truncate">{vacation.reason}</td>
-                <td>
-                  <StatusBadge status={vacation.status} />
-                </td>
+      {/* Mobile: Card View / Desktop: Table */}
+      {isMobile ? (
+        <div className="grid gap-3">
+          {filteredVacations.map((vacation) => (
+            <div key={vacation.id} className="rounded-xl border border-border bg-card p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="font-semibold">{vacation.employeeName}</p>
+                <StatusBadge status={vacation.status} />
+              </div>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <p className="text-muted-foreground">Type</p>
+                  <p className="font-medium capitalize">{vacation.type}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Days</p>
+                  <p className="font-medium">{vacation.days}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Start</p>
+                  <p className="font-medium">{vacation.startDate}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">End</p>
+                  <p className="font-medium">{vacation.endDate}</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground truncate">{vacation.reason}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-xl border border-border bg-card overflow-hidden overflow-x-auto">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days</th>
+                <th className="hidden lg:table-cell">Reason</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {filteredVacations.map((vacation) => (
+                <tr key={vacation.id}>
+                  <td className="font-medium">{vacation.employeeName}</td>
+                  <td className="capitalize">{vacation.type}</td>
+                  <td>{vacation.startDate}</td>
+                  <td>{vacation.endDate}</td>
+                  <td>{vacation.days}</td>
+                  <td className="text-muted-foreground max-w-xs truncate hidden lg:table-cell">{vacation.reason}</td>
+                  <td>
+                    <StatusBadge status={vacation.status} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

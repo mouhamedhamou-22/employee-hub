@@ -11,6 +11,7 @@ interface KPICardProps {
     isPositive: boolean;
   };
   variant?: 'default' | 'success' | 'warning' | 'info';
+  className?: string;
 }
 
 const variantStyles = {
@@ -20,9 +21,9 @@ const variantStyles = {
   info: 'bg-info/10 text-info',
 };
 
-export function KPICard({ title, value, subtitle, icon: Icon, trend, variant = 'default' }: KPICardProps) {
+export function KPICard({ title, value, subtitle, icon: Icon, trend, variant = 'default', className }: KPICardProps) {
   return (
-    <div className="kpi-card animate-fade-in">
+    <div className={cn('kpi-card animate-fade-in', className)}>
       <div className="flex items-start justify-between">
         <div className="space-y-2">
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
