@@ -121,7 +121,7 @@ export function AddEmployeeModal({ open, onOpenChange, onAdd }: AddEmployeeModal
             required
           />
         </div>
-        <div className="space-y-2">
+        {/*<div className="space-y-2">
           <Label htmlFor="role">Role</Label>
           <Select
             value={formData.role}
@@ -136,7 +136,7 @@ export function AddEmployeeModal({ open, onOpenChange, onAdd }: AddEmployeeModal
               <SelectItem value="employee">Employee</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
@@ -152,6 +152,7 @@ export function AddEmployeeModal({ open, onOpenChange, onAdd }: AddEmployeeModal
               <SelectItem value="hour">Hourly</SelectItem>
               <SelectItem value="day">Daily</SelectItem>
               <SelectItem value="month">Monthly</SelectItem>
+              <SelectItem value="Extra_hours">Extra hour salary</SelectItem> 
             </SelectContent>
           </Select>
         </div>
