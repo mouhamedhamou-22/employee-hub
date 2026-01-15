@@ -6,7 +6,7 @@ export interface Employee {
   email: string;
   phone: string;
   jobTitle: string;
-  /*role: 'admin' | 'manager' | 'employee'; */
+  role: 'admin' | 'manager' | 'employee';
   status: 'active' | 'inactive';
   salaryType: 'hour' | 'day' | 'month';
   salary: number;
@@ -65,7 +65,7 @@ export const employees: Employee[] = [
     email: 'sarah.johnson@store.com',
     phone: '+1 555-0101',
     jobTitle: 'Store Manager',
-   /* role: 'admin', */
+    role: 'admin',
     status: 'active',
     salaryType: 'month',
     salary: 5500,
@@ -86,7 +86,7 @@ export const employees: Employee[] = [
     email: 'michael.chen@store.com',
     phone: '+1 555-0102',
     jobTitle: 'Sales Associate',
-    /* role: 'admin', */
+    role: 'employee',
     status: 'active',
     salaryType: 'hour',
     salary: 18,
@@ -107,8 +107,7 @@ export const employees: Employee[] = [
     email: 'emily.rodriguez@store.com',
     phone: '+1 555-0103',
     jobTitle: 'Inventory Manager',
-    /* role: 'admin', */
-
+    role: 'manager',
     status: 'active',
     salaryType: 'month',
     salary: 4200,
@@ -129,8 +128,7 @@ export const employees: Employee[] = [
     email: 'james.wilson@store.com',
     phone: '+1 555-0104',
     jobTitle: 'Cashier',
-    /* role: 'admin', */
-
+    role: 'employee',
     status: 'active',
     salaryType: 'hour',
     salary: 16,
@@ -151,8 +149,7 @@ export const employees: Employee[] = [
     email: 'amanda.foster@store.com',
     phone: '+1 555-0105',
     jobTitle: 'Visual Merchandiser',
-    /* role: 'admin', */
-
+    role: 'employee',
     status: 'active',
     salaryType: 'day',
     salary: 180,
@@ -173,7 +170,7 @@ export const employees: Employee[] = [
     email: 'david.thompson@store.com',
     phone: '+1 555-0106',
     jobTitle: 'Security Officer',
-    /* role: 'admin', */
+    role: 'employee',
     status: 'inactive',
     salaryType: 'hour',
     salary: 20,
@@ -194,7 +191,7 @@ export const employees: Employee[] = [
     email: 'lisa.martinez@store.com',
     phone: '+1 555-0107',
     jobTitle: 'Customer Service Rep',
-    /* role: 'admin', */
+    role: 'employee',
     status: 'active',
     salaryType: 'hour',
     salary: 17,
@@ -215,7 +212,7 @@ export const employees: Employee[] = [
     email: 'robert.kim@store.com',
     phone: '+1 555-0108',
     jobTitle: 'Shift Supervisor',
-    /* role: 'admin', */
+    role: 'manager',
     status: 'active',
     salaryType: 'month',
     salary: 3800,
