@@ -95,7 +95,7 @@ export function AddEmployeeModal({ open, onOpenChange, onAdd }: AddEmployeeModal
             id="phone"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            placeholder="+1 555-0100"
+            placeholder="+213780122675"
             required
           />
         </div>
@@ -157,7 +157,7 @@ export function AddEmployeeModal({ open, onOpenChange, onAdd }: AddEmployeeModal
           </Select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="salary">Salary Amount ($)</Label>
+          <Label htmlFor="salary">Salary Amount (DA)</Label>
           <Input
             id="salary"
             type="number"
