@@ -100,13 +100,13 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
               <th className="hidden md:table-cell">Phone</th>
               <th>Status</th>
               <th className="hidden lg:table-cell">Salary Type</th>
-              <th className="text-right">Actions</th>
+              <th className="w-[120px] overflow-hidden">Actions</th>
             </tr>
           </thead>
           <tbody>
             {employees.map((employee) => (
               <tr key={employee.id} className="animate-fade-in">
-                <td>
+                <td className="w-[120px]">
                   <div className="flex items-center gap-3">
                     <Avatar className="h-9 w-9">
                       <AvatarFallback className="bg-primary/10 text-primary text-sm">
