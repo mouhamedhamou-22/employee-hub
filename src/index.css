@@ -169,6 +169,8 @@
 
   .data-table th {
     @apply text-left text-xs font-medium text-muted-foreground uppercase tracking-wider px-4 py-3 bg-muted/50;
+    width: 100%;
+    table-layout: fixed;
   }
 
   .data-table td {

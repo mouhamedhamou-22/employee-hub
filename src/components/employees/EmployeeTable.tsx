@@ -117,7 +117,7 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
                       <p className="font-medium text-foreground">{employee.fullName}</p>
                       <p className="text-sm text-muted-foreground lg:hidden">{employee.jobTitle}</p>
                     </div>
-                  </div>
+                  </div>      
                 </td>
                 <td className="hidden lg:table-cell">{employee.jobTitle}</td>
                 <td className="hidden md:table-cell">{employee.phone}</td>
