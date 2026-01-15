@@ -92,7 +92,7 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
   return (
     <>
       <div className="rounded-xl border border-border bg-card overflow-hidden overflow-x-auto">
-        <table className="data-table">
+        <table className="data-table w-full table-fixed">
           <thead>
             <tr>
               <th>Employee</th>
