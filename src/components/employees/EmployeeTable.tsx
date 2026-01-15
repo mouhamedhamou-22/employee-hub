@@ -97,7 +97,6 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
             <tr>
               <th>Employee</th>
               <th className="hidden lg:table-cell">Job Title</th>
-              <th>Role</th>
               <th className="hidden md:table-cell">Phone</th>
               <th>Status</th>
               <th className="hidden lg:table-cell">Salary Type</th>
@@ -121,7 +120,6 @@ export function EmployeeTable({ employees, onDeactivate }: EmployeeTableProps) {
                   </div>
                 </td>
                 <td className="hidden lg:table-cell">{employee.jobTitle}</td>
-                <td className="capitalize">{employee.role}</td>
                 <td className="hidden md:table-cell">{employee.phone}</td>
                 <td>
                   <StatusBadge status={employee.status} />

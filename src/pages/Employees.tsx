@@ -15,7 +15,7 @@ import { employees as initialEmployees } from '@/data/mockData';
 
 const Employees = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [roleFilter, setRoleFilter] = useState<string>('all');
+  /*const [roleFilter, setRoleFilter] = useState<string>('all');*/
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [showAddModal, setShowAddModal] = useState(false);
   const [employees, setEmployees] = useState(initialEmployees);
@@ -25,11 +25,11 @@ const Employees = () => {
       const matchesSearch =
         emp.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         emp.phone.includes(searchQuery);
-      const matchesRole = roleFilter === 'all' || emp.role === roleFilter;
+      /*const matchesRole = roleFilter === 'all' || emp.role === roleFilter;*/
       const matchesStatus = statusFilter === 'all' || emp.status === statusFilter;
-      return matchesSearch && matchesRole && matchesStatus;
+      return matchesSearch /*matchesRole*/ && matchesStatus;
     });
-  }, [employees, searchQuery, roleFilter, statusFilter]);
+  }, [employees, searchQuery, /*roleFilter*/ statusFilter]);
 
   const handleDeactivate = (id: string) => {
     setEmployees(employees.map(emp => 
@@ -63,7 +63,7 @@ const Employees = () => {
           />
         </div>
         <div className="flex flex-wrap gap-2">
-          <Select value={roleFilter} onValueChange={setRoleFilter}>
+          {/* <Select value={roleFilter} onValueChange={setRoleFilter}>
             <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <Filter className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Role" />
@@ -73,8 +73,8 @@ const Employees = () => {
               <SelectItem value="admin">Admin</SelectItem>
               <SelectItem value="manager">Manager</SelectItem>
               <SelectItem value="employee">Employee</SelectItem>
-            </SelectContent>
-          </Select>
+            </SelectContent> 
+          </Select> */}
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger className="flex-1 min-w-[120px] sm:w-36 sm:flex-none">
               <SelectValue placeholder="Status" />
