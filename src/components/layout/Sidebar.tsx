@@ -43,7 +43,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   {!collapsed && (
     <div className="flex items-center gap-2">
       <img
-        src="/assets/PayRollPro_none.png"
+        src="C:\Users\mouha\employee-hub\src\assests\PayRollPro_none.png"
         alt="PayrollPro Logo"
         className="h-8 w-8 rounded-lg"
       />
