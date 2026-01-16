@@ -36,14 +36,14 @@ export function EmployeePaymentsTab({ payments }: PaymentsTabProps) {
 
       {/* Table */}
       <div className="rounded-xl border border-border bg-card overflow-hidden">
-        <table className="data-table">
+        <table className="data-table w-full table-fixed">
           <thead>
             <tr>
               <th>Date</th>
               <th>Amount</th>
               <th>Type</th>
               <th>Description</th>
-              <th>Status</th>
+             {/* <th>Status</th> */}
             </tr>
           </thead>
           <tbody>
@@ -65,9 +65,9 @@ export function EmployeePaymentsTab({ payments }: PaymentsTabProps) {
                   </td>
                   <td className="capitalize">{payment.type}</td>
                   <td className="text-muted-foreground">{payment.description}</td>
-                  <td>
+                  {/*{<td>
                     <StatusBadge status={payment.status} />
-                  </td>
+                  </td>*/}
                 </tr>
               ))
             )}
