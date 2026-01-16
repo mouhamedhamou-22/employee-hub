@@ -39,7 +39,7 @@ export function EmployeeAttendanceTab({ records }: AttendanceTabProps) {
 
       {/* Table */}
       <div className="rounded-xl border border-border bg-card overflow-hidden">
-        <table className="data-table">
+        <table className="data-table w-full table-fixed">
           <thead>
             <tr>
               <th>Date</th>
