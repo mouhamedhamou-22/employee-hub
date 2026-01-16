@@ -10,14 +10,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { StatusBadge } from '@/components/ui/status-badge';
-import { payments } from '@/data/mockData';
+import { payments, employees } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AddPaymentModal } from '@/components/payments/AddPaymentModal';
 
 const Payments = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const isMobile = useIsMobile();
 
   const filteredPayments = useMemo(() => {
@@ -39,6 +42,10 @@ const Payments = () => {
     };
   }, []);
 
+  const handleAddPayment = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Page Header */}
@@ -52,7 +59,7 @@ const Payments = () => {
             <Download className="mr-2 h-4 w-4" />
             Export
           </Button>
-          <Button size="sm" className="flex-1 sm:flex-none">
+          <Button size="sm" className="flex-1 sm:flex-none" onClick={handleAddPayment}>
             <Plus className="mr-2 h-4 w-4" />
             Add<span className="hidden sm:inline"> Payment</span>
           </Button>
@@ -204,6 +211,13 @@ const Payments = () => {
           </table>
         </div>
       )}
+
+      {/* Add Payment Modal */}
+      <AddPaymentModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        employee={selectedEmployee}
+      />
     </div>
   );
 };

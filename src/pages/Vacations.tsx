@@ -10,13 +10,16 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { StatusBadge } from '@/components/ui/status-badge';
-import { vacations } from '@/data/mockData';
+import { vacations, employees } from '@/data/mockData';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AddVacationDrawer } from '@/components/vacations/AddVacationDrawer';
 
 const Vacations = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const isMobile = useIsMobile();
 
   const filteredVacations = useMemo(() => {
@@ -35,6 +38,10 @@ const Vacations = () => {
     totalDays: vacations.filter(v => v.status === 'approved').reduce((sum, v) => sum + v.days, 0),
   }), []);
 
+  const handleAddVacation = () => {
+    setDrawerOpen(true);
+  };
+
   return (
     <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Page Header */}
@@ -43,7 +50,7 @@ const Vacations = () => {
           <h1 className="page-title text-xl md:text-2xl">Vacations</h1>
           <p className="page-description text-sm md:text-base">Manage employee vacation requests and time off.</p>
         </div>
-        <Button size="sm" className="w-full sm:w-auto">
+        <Button size="sm" className="w-full sm:w-auto" onClick={handleAddVacation}>
           <Plus className="mr-2 h-4 w-4" />
           Add Vacation
         </Button>
@@ -199,6 +206,13 @@ const Vacations = () => {
           </table>
         </div>
       )}
+
+      {/* Add Vacation Drawer */}
+      <AddVacationDrawer
+        open={drawerOpen}
+        onOpenChange={setDrawerOpen}
+        employee={selectedEmployee}
+      />
     </div>
   );
 };

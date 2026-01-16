@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, CreditCard, Palmtree, Settings, Mail, Phone, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,10 +10,17 @@ import { EmployeeAttendanceTab } from '@/components/employee-profile/AttendanceT
 import { EmployeePaymentsTab } from '@/components/employee-profile/PaymentsTab';
 import { EmployeeVacationsTab } from '@/components/employee-profile/VacationsTab';
 import { EmployeeSettingsTab } from '@/components/employee-profile/SettingsTab';
+import { AddAttendanceDrawer } from '@/components/attendance/AddAttendanceDrawer';
+import { AddPaymentModal } from '@/components/payments/AddPaymentModal';
+import { AddVacationDrawer } from '@/components/vacations/AddVacationDrawer';
 
 const EmployeeProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  
+  const [attendanceDrawerOpen, setAttendanceDrawerOpen] = useState(false);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [vacationDrawerOpen, setVacationDrawerOpen] = useState(false);
   
   const employee = employees.find(e => e.id === id);
   
@@ -79,15 +87,15 @@ const EmployeeProfile = () => {
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => setAttendanceDrawerOpen(true)}>
               <Clock className="mr-2 h-4 w-4" />
               Add Attendance
             </Button>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => setPaymentModalOpen(true)}>
               <CreditCard className="mr-2 h-4 w-4" />
               Add Payment
             </Button>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => setVacationDrawerOpen(true)}>
               <Palmtree className="mr-2 h-4 w-4" />
               Add Vacation
             </Button>
@@ -129,6 +137,23 @@ const EmployeeProfile = () => {
           <EmployeeSettingsTab employee={employee} />
         </TabsContent>
       </Tabs>
+
+      {/* Drawers & Modals */}
+      <AddAttendanceDrawer
+        open={attendanceDrawerOpen}
+        onOpenChange={setAttendanceDrawerOpen}
+        employee={employee}
+      />
+      <AddPaymentModal
+        open={paymentModalOpen}
+        onOpenChange={setPaymentModalOpen}
+        employee={employee}
+      />
+      <AddVacationDrawer
+        open={vacationDrawerOpen}
+        onOpenChange={setVacationDrawerOpen}
+        employee={employee}
+      />
     </div>
   );
 };
