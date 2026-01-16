@@ -13,11 +13,14 @@ import { StatusBadge } from '@/components/ui/status-badge';
 import { Badge } from '@/components/ui/badge';
 import { attendanceRecords, employees } from '@/data/mockData';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AddAttendanceDrawer } from '@/components/attendance/AddAttendanceDrawer';
 
 const Attendance = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [dateFilter, setDateFilter] = useState('2026-01-13');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const isMobile = useIsMobile();
 
   const filteredRecords = useMemo(() => {
@@ -39,6 +42,10 @@ const Attendance = () => {
     };
   }, []);
 
+  const handleAddAttendance = () => {
+    setDrawerOpen(true);
+  };
+
   return (
     <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Page Header */}
@@ -52,7 +59,7 @@ const Attendance = () => {
             <CheckCircle className="mr-2 h-4 w-4" />
             <span className="hidden sm:inline">Mark All </span>Present
           </Button>
-          <Button size="sm" className="flex-1 sm:flex-none">
+          <Button size="sm" className="flex-1 sm:flex-none" onClick={handleAddAttendance}>
             <Plus className="mr-2 h-4 w-4" />
             Add<span className="hidden sm:inline"> Attendance</span>
           </Button>
@@ -205,6 +212,13 @@ const Attendance = () => {
           </table>
         </div>
       )}
+
+      {/* Add Attendance Drawer */}
+      <AddAttendanceDrawer
+        open={drawerOpen}
+        onOpenChange={setDrawerOpen}
+        employee={selectedEmployee}
+      />
     </div>
   );
 };
